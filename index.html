@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bookgadi PWA</title>
+
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#FFC107">
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      margin:0;
+      padding:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      background:#fff8e1;
+    }
+    .box{
+      text-align:center;
+      padding:20px;
+    }
+    #installBtn{
+      display:none;
+      margin-top:20px;
+      background:#0b5ed7;
+      color:white;
+      border:none;
+      padding:14px 24px;
+      font-size:16px;
+      font-weight:bold;
+      border-radius:30px;
+      cursor:pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h2>Bookgadi Taxi Service</h2>
+    <p>Install this app on your phone.</p>
+    <button id="installBtn">📲 Install Now</button>
+  </div>
+
+<script>
+  // Register Service Worker
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js");
+  }
+
+  // Install popup logic
+  let deferredPrompt;
+  const installBtn = document.getElementById("installBtn");
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = "inline-block";
+  });
+
+  installBtn.addEventListener("click", async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBtn.style.display = "none";
+  });
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bookgadi PWA</title>
+
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#FFC107">
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      margin:0;
+      padding:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      background:#fff8e1;
+    }
+    .box{
+      text-align:center;
+      padding:20px;
+    }
+    #installBtn{
+      display:none;
+      margin-top:20px;
+      background:#0b5ed7;
+      color:white;
+      border:none;
+      padding:14px 24px;
+      font-size:16px;
+      font-weight:bold;
+      border-radius:30px;
+      cursor:pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h2>Bookgadi Taxi Service</h2>
+    <p>Install this app on your phone.</p>
+    <button id="installBtn">📲 Install Now</button>
+  </div>
+
+<script>
+  // Register Service Worker
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js");
+  }
+
+  // Install popup logic
+  let deferredPrompt;
+  const installBtn = document.getElementById("installBtn");
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = "inline-block";
+  });
+
+  installBtn.addEventListener("click", async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBtn.style.display = "none";
+  });
+</script>
+</body>
+</html>
