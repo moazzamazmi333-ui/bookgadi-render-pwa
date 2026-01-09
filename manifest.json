@@ -1,16 +1,18 @@
 {
   "short_name": "BookGadi",
-  "name": "BookGadi Online Taxi Service",
+  "name": "BookGadi Online Taxi",
   "icons": [
     {
       "src": "https://moazzamazmi333-ui.github.io/bookgadi-render-pwa/icon-192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "https://moazzamazmi333-ui.github.io/bookgadi-render-pwa/icon-512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": "https://www.bookgadi.com/",
