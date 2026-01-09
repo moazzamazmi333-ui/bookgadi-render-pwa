@@ -1,1 +1,21 @@
-<h1>PWA Server is Live</h1>
+<script>
+  // GitHub se PWA files load karna
+  var link = document.createElement('link');
+  link.rel = 'manifest';
+  link.href = 'https://moazzamazmi333-ui.github.io/bookgadi-render-pwa/manifest.json';
+  document.head.appendChild(link);
+
+  // Service Worker ko Wix domain par link karna
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('https://moazzamazmi333-ui.github.io/bookgadi-render-pwa/sw.js');
+  }
+
+  // Wix Velo Button ke liye message handler
+  window.addEventListener('message', (event) => {
+    if (event.data === "install_pwa") {
+      // Isse aapka GitHub wala "index.html" page ek naye tab mein khulega 
+      // jahan "Install App" ka button 100% kaam karega
+      window.open("https://moazzamazmi333-ui.github.io/bookgadi-render-pwa/", "_blank");
+    }
+  });
+</script>
