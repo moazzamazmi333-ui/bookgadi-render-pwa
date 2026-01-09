@@ -1,23 +1,22 @@
 {
   "short_name": "BookGadi",
-  "name": "BookGadi Online Taxi",
+  "name": "BookGadi Taxi Service",
   "icons": [
     {
       "src": "https://moazzamazmi333-ui.github.io/bookgadi-render-pwa/icon-192.png",
       "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "any maskable"
+      "sizes": "192x192"
     },
     {
       "src": "https://moazzamazmi333-ui.github.io/bookgadi-render-pwa/icon-512.png",
       "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any maskable"
+      "sizes": "512x512"
     }
   ],
   "start_url": "https://www.bookgadi.com/",
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#000000"
+  "theme_color": "#0b5ed7"
 }
+
