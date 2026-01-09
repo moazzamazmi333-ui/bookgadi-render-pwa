@@ -11,27 +11,24 @@
   <style>
     body{
       margin:0;
-      font-family: system-ui, Arial;
+      height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      height:100vh;
+      font-family:system-ui, Arial;
       background:#f7f7f7;
       text-align:center;
     }
-    .box{
-      max-width:420px;
-      padding:20px;
-    }
-    h1{ margin:0; font-size:22px; }
-    p{ color:#666; margin:10px 0 18px; }
-    #btn{
+    .box{ max-width:360px; padding:20px; }
+    h1{ font-size:22px; margin:0; }
+    p{ color:#555; margin:12px 0 18px; }
+    button{
       display:none;
       background:#0b5ed7;
       color:#fff;
       border:none;
-      padding:12px 18px;
-      border-radius:25px;
+      padding:12px 20px;
+      border-radius:30px;
       font-size:15px;
       font-weight:700;
       cursor:pointer;
@@ -42,20 +39,22 @@
 
   <div class="box">
     <h1>Bookgadi Taxi Service</h1>
-    <p>Install this app on your phone.</p>
-    <button id="btn">📲 Install Now</button>
+    <p>Add this app to your home screen</p>
+    <button id="installBtn">📲 Install App</button>
+    <p style="font-size:13px;color:#777;margin-top:14px">
+      If button not visible:<br>
+      Chrome menu (⋮) → Add to Home screen
+    </p>
   </div>
 
   <script>
-    // Service worker register
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js");
+      navigator.serviceWorker.register("./sw.js");
     }
 
-    let deferredPrompt = null;
-    const btn = document.getElementById("btn");
+    let deferredPrompt;
+    const btn = document.getElementById("installBtn");
 
-    // Install prompt handler
     window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
       deferredPrompt = e;
@@ -64,27 +63,11 @@
 
     btn.addEventListener("click", async () => {
       if (!deferredPrompt) return;
-
       deferredPrompt.prompt();
       await deferredPrompt.userChoice;
       deferredPrompt = null;
-
-      // After install / click, open tracking page
-      window.location.href = "https://www.bookgadi.com";
     });
-
-    // If user already installed, redirect directly
-    window.addEventListener("appinstalled", () => {
-      window.location.href = "https://www.bookgadi.com";
-    });
-
-    // Optional: Auto redirect after 3 sec
-    setTimeout(() => {
-      // user can still install, but will go to live page
-      window.location.href = "https://www.bookgadi.com";
-    }, 3000);
   </script>
 
 </body>
 </html>
-
