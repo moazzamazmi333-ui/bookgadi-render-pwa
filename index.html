@@ -1,36 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <title>Bookgadi Taxi Service</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0b5ed7">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body style="margin:0;font-family:system-ui;text-align:center;padding-top:35vh">
+<body style="
+  margin:0;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:system-ui;
+  background:#f7f7f7;
+  text-align:center;
+">
 
-  <h2>Bookgadi Taxi Service</h2>
-  <p>Tap below to open Bookgadi</p>
+  <div>
+    <h2>Bookgadi Taxi Service</h2>
+    <p>Add this app to your home screen</p>
 
-  <button onclick="openSite()"
-    style="background:#0b5ed7;color:#fff;border:none;
-           padding:14px 22px;border-radius:25px;font-size:16px">
-    Open Bookgadi
-  </button>
+    <button id="installBtn"
+      style="display:none;
+      background:#0b5ed7;
+      color:#fff;
+      border:none;
+      padding:14px 22px;
+      border-radius:25px;
+      font-size:16px;
+      font-weight:700;">
+      📲 Install App
+    </button>
 
-  <script>
-    function openSite(){
-      window.open(
-        "https://www.bookgadi.com",
-        "_blank"
-      );
-    }
+    <br><br>
 
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js");
-    }
-  </script>
+    <button id="openBtn"
+      style="display:none;
+      background:#25d366;
+      color:#fff;
+      border:none;
+      padding:14px 22px;
+      border-radius:25px;
+      font-size:16px;
+      font-weight:700;">
+      🚕 Open Bookgadi
+    </button>
+
+    <p style="color:#777;font-size:13px;margin-top:15px">
+      If install button not visible:<br>
+      Chrome menu (⋮) → Add to Home Screen
+    </p>
+  </div>
+
+<script>
+  // Register service worker
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+  }
+
+  let deferredPrompt;
+  const installBtn = document.getElementById("installBtn");
+  const openBtn = document.getElementById("openBtn");
+
+  // Capture install event
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = "inline-block";
+  });
+
+  // Install click
+  installBtn.addEventListener("click", async () => {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+
+    installBtn.style.display = "none";
+    openBtn.style.display = "inline-block";
+  });
+
+  // After install
+  window.addEventListener("appinstalled", () => {
+    openBtn.style.display = "inline-block";
+  });
+
+  // Open Bookgadi manually
+  openBtn.addEventListener("click", () => {
+    window.open(
+      "https://www.bookgadi.com",
+      "_blank"
+    );
+  });
+</script>
 
 </body>
 </html>
