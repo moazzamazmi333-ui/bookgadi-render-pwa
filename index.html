@@ -1,72 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
   <title>Bookgadi Taxi Service</title>
-
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0b5ed7">
-
-  <style>
-    body{
-      margin:0;
-      height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-family:system-ui, Arial;
-      background:#f7f7f7;
-      text-align:center;
-    }
-    .box{ max-width:360px; padding:20px; }
-    h1{ font-size:22px; margin:0; }
-    p{ color:#555; margin:12px 0 18px; }
-    button{
-      display:none;
-      background:#0b5ed7;
-      color:#fff;
-      border:none;
-      padding:12px 20px;
-      border-radius:30px;
-      font-size:15px;
-      font-weight:700;
-      cursor:pointer;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
 
-  <div class="box">
-    <h1>Bookgadi Taxi Service</h1>
-    <p>Add this app to your home screen</p>
-    <button id="installBtn">📲 Install App</button>
-    <p style="font-size:13px;color:#777;margin-top:14px">
-      If button not visible:<br>
-      Chrome menu (⋮) → Add to Home screen
-    </p>
-  </div>
+<body style="margin:0;font-family:system-ui;text-align:center;padding-top:35vh">
+
+  <h2>Bookgadi Taxi Service</h2>
+  <p>Tap below to open Bookgadi</p>
+
+  <button onclick="openSite()"
+    style="background:#0b5ed7;color:#fff;border:none;
+           padding:14px 22px;border-radius:25px;font-size:16px">
+    Open Bookgadi
+  </button>
 
   <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("./sw.js");
+    function openSite(){
+      window.open(
+        "https://www.bookgadi.com",
+        "_blank"
+      );
     }
 
-    let deferredPrompt;
-    const btn = document.getElementById("installBtn");
-
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      btn.style.display = "inline-block";
-    });
-
-    btn.addEventListener("click", async () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt = null;
-    });
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
+    }
   </script>
 
 </body>
