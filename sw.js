@@ -1,8 +1,7 @@
-self.addEventListener('install', (e) => {
+self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
-self.addEventListener('fetch', (e) => {
-  // Wix files fetch karne ke liye basic handler
+self.addEventListener('fetch', (event) => {
+  event.respondWith(fetch(event.request));
 });
-
