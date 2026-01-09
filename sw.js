@@ -1,11 +1,7 @@
-self.addEventListener("install", (event) => {
-  self.skipWaiting();
+self.addEventListener('install', (e) => {
+  console.log('Service Worker: Installed');
 });
 
-self.addEventListener("activate", (event) => {
-  self.clients.claim();
-});
-
-self.addEventListener("fetch", (event) => {
-  // normal fetch
+self.addEventListener('fetch', (e) => {
+  // Wix files ko fetch karne ke liye empty handler
 });
