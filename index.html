@@ -24,6 +24,7 @@
     <h2>Bookgadi Taxi Service</h2>
     <p>Add this app to your home screen</p>
 
+    <!-- Install Button -->
     <button id="installBtn"
       style="display:none;
       background:#0b5ed7;
@@ -36,10 +37,10 @@
       📲 Install App
     </button>
 
-    <br><br>
-
+    <!-- Open Button -->
     <button id="openBtn"
       style="display:none;
+      margin-top:15px;
       background:#25d366;
       color:#fff;
       border:none;
@@ -50,7 +51,7 @@
       🚕 Open Bookgadi
     </button>
 
-    <p style="color:#777;font-size:13px;margin-top:15px">
+    <p style="color:#777;font-size:13px;margin-top:18px">
       If install button not visible:<br>
       Chrome menu (⋮) → Add to Home Screen
     </p>
@@ -66,14 +67,14 @@
   const installBtn = document.getElementById("installBtn");
   const openBtn = document.getElementById("openBtn");
 
-  // Capture install event
+  // Capture install prompt
   window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     deferredPrompt = e;
     installBtn.style.display = "inline-block";
   });
 
-  // Install click
+  // Install button click
   installBtn.addEventListener("click", async () => {
     if (!deferredPrompt) return;
 
@@ -85,12 +86,12 @@
     openBtn.style.display = "inline-block";
   });
 
-  // After install
+  // When app is already installed
   window.addEventListener("appinstalled", () => {
     openBtn.style.display = "inline-block";
   });
 
-  // Open Bookgadi manually
+  // Open Bookgadi (user action)
   openBtn.addEventListener("click", () => {
     window.open(
       "https://www.bookgadi.com",
