@@ -18,4 +18,18 @@
       window.open("https://moazzamazmi333-ui.github.io/bookgadi-render-pwa/", "_blank");
     }
   });
+  // Check karein agar app pehle se installed hai
+if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+  document.getElementById("installBtn").style.display = "none";
+  // Agar aapne open button banaya hai toh use dikha sakte hain
+  if(document.getElementById("openBtn")) {
+     document.getElementById("openBtn").style.display = "inline-block";
+  }
+}
+
+// Install hone ke turant baad button ko hide karne ke liye
+window.addEventListener("appinstalled", () => {
+  document.getElementById("installBtn").style.display = "none";
+  console.log("App installed successfully");
+});
 </script>
